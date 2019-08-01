@@ -1,3 +1,3 @@
-# Tartu Smart Bike Checker for Fitbit OS
+# Tartu Smart Bike
 
-Returns the nearest dock with bikes and the distance to them.
+Uses the Tartu Smart Bike open API endpoint to show the nearest docks and how many bikes are present there.
