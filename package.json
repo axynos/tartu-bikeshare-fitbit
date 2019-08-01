@@ -10,10 +10,14 @@
   "fitbit": {
     "appUUID": "dc76f02f-4368-43be-8c4b-3c0b6c515d2f",
     "appType": "app",
-    "appDisplayName": "Tartu Bikeshare Checker",
+    "appDisplayName": "Tartu Bikes",
     "iconFile": "resources/icon.png",
     "wipeColor": "#ffffff",
-    "requestedPermissions": [],
+    "requestedPermissions": [
+      "access_internet",
+      "access_location",
+      "run_background"
+    ],
     "buildTargets": [
       "higgs",
       "meson",
@@ -25,5 +29,10 @@
   "scripts": {
     "build": "fitbit-build",
     "debug": "fitbit"
+  },
+  "dependencies": {
+    "geolocator": "^2.1.5",
+    "object-sizeof": "^1.4.0",
+    "util.promisify": "^1.0.0"
   }
 }
