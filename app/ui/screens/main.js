@@ -82,8 +82,6 @@ const updatePoolStations = tileInfoList => {
     const tile = document.getElementById(tileInfo.tileId)
     const station = secondaryStations[tileInfo.stationId]
 
-    console.log("tileId: " + tileInfo.tileId + " / " + "stationId: " + tileInfo.stationId)
-
     tile.getElementById('name').text = station.name
     tile.getElementById('distance').text = humanizeDistance(station.distance)
     tile.getElementById('electric').text = station.electricBikes
