@@ -12,25 +12,23 @@ export const MainScreen = {
   events: ['dataUpdate'],
 }
 
-const populateHeroStation = station => {
+let heroStation = {}
+let allStations = []
+let secondaryStations = []
+let savedTileList = {}
+
+const populateHeroStation = _ => {
   const tile = document.getElementById('stations-hero')
 
-  tile.getElementById('name').text = station.name
-  tile.getElementById('distance').text = humanizeDistance(station.distance)
-  //tile.getElementById('electric').text = 69
-  //tile.getElementById('normal').text = 69
-  tile.getElementById('electric').text = station.electricBikes
-  tile.getElementById('normal').text = station.normalBikes
+  tile.getElementById('name').text = heroStation.name
+  tile.getElementById('distance').text = humanizeDistance(heroStation.distance)
+  tile.getElementById('electric').text = heroStation.electricBikes
+  tile.getElementById('normal').text = heroStation.normalBikes
 }
 
-const populateSecondaryStations = stations => {
-  // Log each station separately, because logging the entire object at once
-  // causes an our of memory exception.
-  stations.forEach(station => {
-    //console.log(JSON.stringify(station))
-  })
-
+const createStationsPool = _ => {
   // VirtualTileList implementation
+  const stations = secondaryStations
   const VTList = document.getElementById('stations-list');
   const NUM_ELEMS = stations.length;
 
@@ -55,16 +53,22 @@ const populateSecondaryStations = stations => {
         name: name,
         distance: humanDist,
         electricBikes: electricBikes,
-        normalBikes: normalBikes
+        normalBikes: normalBikes,
+        id: index
       };
     },
+
     configureTile: function(tile, info) {
       tile.getElementById('name').text = info.name
       tile.getElementById('distance').text = info.distance
       tile.getElementById('electric').text = info.electricBikes
       tile.getElementById('normal').text = info.normalBikes
-      //tile.getElementById('electric').text = 13
-      //tile.getElementById('normal').text = 37
+
+      // Save the pool tile and station pair so that it can be updated later.
+      savedTileList[tile['id']] = {
+        stationId: info.id,
+        tileId: tile['id']
+      }
     }
   }
 
@@ -72,10 +76,45 @@ const populateSecondaryStations = stations => {
   VTList.length = NUM_ELEMS;
 }
 
-export const loadStations = stations => {
-  const heroStation = stations[0]
-  const secondaryStations = stations.slice(1, stations.length - 1)
+const updatePoolStations = tileInfoList => {
+  tileInfoList.forEach(tileInfoKey => {
+    const tileInfo = savedTileList[tileInfoKey]
+    const tile = document.getElementById(tileInfo.tileId)
+    const station = secondaryStations[tileInfo.stationId]
 
-  populateHeroStation(heroStation)
-  populateSecondaryStations(secondaryStations)
+    console.log("tileId: " + tileInfo.tileId + " / " + "stationId: " + tileInfo.stationId)
+
+    tile.getElementById('name').text = station.name
+    tile.getElementById('distance').text = humanizeDistance(station.distance)
+    tile.getElementById('electric').text = station.electricBikes
+    tile.getElementById('normal').text = station.normalBikes
+  })
+}
+
+/**
+ * Initial load of the stations, creates the secondary stations pool.
+ * @param  {Array} stations Data array of stations.
+ * @return {undefined}
+ */
+export const loadStations = stations => {
+  heroStation = stations[0]
+  secondaryStations = stations.slice(1, stations.length - 1)
+
+  populateHeroStation()
+  createStationsPool()
+}
+
+
+/**
+ * Update stations when the Virtual Tile List has already been created.
+ * @param  {Array} stations Array with the updated stations information.
+ * @return {undefined}
+ */
+export const updateStations = stations => {
+  allStations = stations
+  heroStation = stations[0]
+  secondaryStations = stations.slice(1, stations.length - 1)
+
+  populateHeroStation()
+  updatePoolStations(Object.getOwnPropertyNames(savedTileList))
 }

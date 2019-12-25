@@ -1,9 +1,13 @@
 import { readFileSync } from 'fs'
-import { MainScreen, loadStations } from '../ui/screens/main'
-import { changeScreen } from '../ui/screen'
+import { MainScreen, loadStations, updateStations } from '../ui/screens/main'
+import { changeScreen, current } from '../ui/screen'
 
 export const updateMainWithData = data => {
   const stations = readFileSync(data, 'cbor')
-  changeScreen(MainScreen)
-  loadStations(stations)
+  if (current.id !== MainScreen.id) {
+    changeScreen(MainScreen)
+    loadStations(stations)
+  } else {
+    updateStations(stations)
+  }
 }
