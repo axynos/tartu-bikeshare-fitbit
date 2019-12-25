@@ -20,8 +20,8 @@ messaging.peerSocket.onopen = () => {
   sendData()
 }
 
-// Send fresh data every 45 seconds
-setInterval(sendData, 10 * 1000)
+// Send fresh data every 15 seconds
+setInterval(sendData, 15 * 1000)
 
 messaging.peerSocket.onerror = function(err) {
   console.log("Connection error: " + err.code + " - " + err.message);
