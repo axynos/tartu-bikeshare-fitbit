@@ -17,7 +17,7 @@ const exampleScreen = {
  * Currently active screen.
  * @type {Screen}
  */
-let current = LoadingScreen
+export let current = LoadingScreen
 
 /**
  * Changes to desired screen
@@ -26,4 +26,5 @@ let current = LoadingScreen
  */
 export const changeScreen = screen => {
   document.replaceSync(screen.resource)
+  current = screen
 }
