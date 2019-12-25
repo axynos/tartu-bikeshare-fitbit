@@ -1,28 +1,37 @@
-import document from "document";
+import document from 'document'
+import { humanizeDistance } from '../../util/util'
 
-export const update = (event) => {
-  switch (event.type) {
-    case 'withData':
-      updateWithData(event.data)
-      break;
-    case 'loading':
-      console.log('Switch to loading ui.');
-      break;
-    default:
-      break;
-
-  }
+/**
+ * Base definition for the main screen.
+ * @type {Screen}
+ */
+export const MainScreen = {
+  name: 'main',
+  id: 'main',
+  resource: 'screens/main/main.gui',
+  events: ['dataUpdate'],
 }
 
-const updateWithData = stations => {
+const populateHeroStation = station => {
+  const tile = document.getElementById('stations-hero')
+
+  tile.getElementById('name').text = station.name
+  tile.getElementById('distance').text = humanizeDistance(station.distance)
+  //tile.getElementById('electric').text = 69
+  //tile.getElementById('normal').text = 69
+  tile.getElementById('electric').text = station.electricBikes
+  tile.getElementById('normal').text = station.normalBikes
+}
+
+const populateSecondaryStations = stations => {
   // Log each station separately, because logging the entire object at once
   // causes an our of memory exception.
   stations.forEach(station => {
-    // console.log(JSON.stringify(station));
+    //console.log(JSON.stringify(station))
   })
 
   // VirtualTileList implementation
-  const VTList = document.getElementById('my-tile-list');
+  const VTList = document.getElementById('stations-list');
   const NUM_ELEMS = stations.length;
 
   /****************************************************************************************************
@@ -41,8 +50,7 @@ const updateWithData = stations => {
       const humanDist = humanizeDistance(distance)
 
       return {
-        type: 'colour-pool',
-        color: 'black',
+        type: 'station-pool',
         index: index,
         name: name,
         distance: humanDist,
@@ -51,11 +59,12 @@ const updateWithData = stations => {
       };
     },
     configureTile: function(tile, info) {
-      tile.getElementById('bg').style.fill = info.color
       tile.getElementById('name').text = info.name
       tile.getElementById('distance').text = info.distance
-      tile.getElementById('electric-count').text = info.electricBikes
-      tile.getElementById('normal-count').text = info.normalBikes
+      tile.getElementById('electric').text = info.electricBikes
+      tile.getElementById('normal').text = info.normalBikes
+      //tile.getElementById('electric').text = 13
+      //tile.getElementById('normal').text = 37
     }
   }
 
@@ -63,17 +72,10 @@ const updateWithData = stations => {
   VTList.length = NUM_ELEMS;
 }
 
-const humanizeDistance = (distance) => {
-  let unit;
-  let adjustedDist;
+export const loadStations = stations => {
+  const heroStation = stations[0]
+  const secondaryStations = stations.slice(1, stations.length - 1)
 
-  if (distance < 1) {
-    unit = 'm'
-    adjustedDist = Math.round(distance * 1000)
-  } else {
-    unit = 'km'
-    adjustedDist = (Math.round(distance * 1000) / 1000).toFixed(2)
-  }
-
-  return `${adjustedDist} ${unit}`
+  populateHeroStation(heroStation)
+  populateSecondaryStations(secondaryStations)
 }

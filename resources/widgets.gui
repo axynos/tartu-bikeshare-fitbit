@@ -1,6 +1,10 @@
 <svg>
   <defs>
     <link href="styles.css" rel="stylesheet"/>
+    <link href="screens/main/main.css" rel="stylesheet"/>
+    <link href="screens/main/hero.css" rel="stylesheet"/>
+    <link href="screens/main/secondaryStation.css" rel="stylesheet"/>
+    <link href="screens/loading/loading.css" rel="stylesheet"/>
 
     <link rel="import" href="/mnt/sysassets/widgets_common.gui" />
     <link rel="import" href="/mnt/sysassets/widgets/tile_list_widget.gui" />

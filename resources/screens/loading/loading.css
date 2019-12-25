@@ -1,0 +1,12 @@
+.loading #status {
+  fill: white;
+  x: 50%;
+  y: 80%;
+  text-anchor: middle;
+  font-family: Seville-Bold;
+  font-size: 21;
+}
+
+.loading #animated-icon {
+  transform: 'translate(50%, 40%)';
+}

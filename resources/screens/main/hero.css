@@ -1,0 +1,74 @@
+.hero {
+  height: 200;
+  fill: #0064aa;
+}
+
+.hero text {
+  fill: white;
+  font-family: Seville-Bold-Condensed;
+}
+
+.hero #background {
+  height: 100%;
+  width: 100%;
+}
+
+.hero #name {
+  text-align: center;
+  font-size: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 50;
+}
+
+.hero #distance {
+  x: 50%;
+  y: 175;
+  font-size: 37;
+  text-anchor: middle;
+  opacity: 0.65;
+}
+
+.hero .icon {
+  fill: white;
+}
+
+.hero .icon.electric {
+  x: 13%;
+  y: 85;
+  width: 35;
+  height: 35;
+}
+
+.hero .icon.normal {
+  x: 76%;
+  y: 86;
+  width: 33;
+  height: 33;
+}
+
+.hero .bike-counter {
+  font-family: Seville-Bold;
+  font-size: 40;
+}
+
+.hero .bike-counter.electric {
+  x: 28%;
+  y: 116;
+  text-anchor: start;
+}
+
+.hero .bike-counter.normal {
+  x: 72%;
+  y: 116;
+  text-anchor: end;
+}
+
+.hero #bike-counter-divider {
+  font-family: Seville-Book;
+  font-size: 50;
+  text-anchor: middle;
+  x: 50%;
+  y: 120;
+  opacity: 0.5;
+}

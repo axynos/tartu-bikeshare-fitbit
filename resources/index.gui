@@ -1,57 +1,28 @@
-<svg>
-  <svg id="loading" width="100%" height="100%">
-    <g fill="white" >
-      <circle fill="#777777" cx="50% - 35" cy="50%" r="7">
-        <animate attributeName="opacity" begin="load" from="1" to="0.3" dur="10" repeatCount="indefinite" />
-      </circle>
-      <circle fill="#ffffff" cx="50%" cy="50%" r="9">
-        <animate attributeName="opacity" begin="load" from="1" to="0.55" dur="10" repeatCount="indefinite" />
-      </circle>
-      <circle fill="#777777" cx="50% + 35" cy="50%" r="7" >
-        <animate attributeName="opacity" begin="load" from="1" to="0.3" dur="10" repeatCount="indefinite" />
-      </circle>
+<svg width="100%" height="100%">
+  <symbol id="loading-icon" fill="white">
+    <g>
+      <circle fill="#777777" cx="-35" cy="0" r="7"></circle>
+      <animateTransform attributeType="translate" from="0" to="-5" begin="load" dur="1250ms" repeatDur="2500ms" repeatCount="indefinite" easing="ease-in-out"/>
+      <animateTransform attributeType="translate" from="-5" to="0" begin="load+1250ms" dur="1250ms" repeatDur="2500ms" repeatCount="indefinite" easing="ease-in-out"/>
     </g>
-  </svg>
+    <g>
+      <circle fill="#ffffff" cx="0" cy="0" r="9"></circle>
+      <animateTransform attributeType="scale" from="1" to="1.15" begin="load" dur="1250ms" repeatDur="2500ms" repeatCount="indefinite" easing="ease-in-out"/>
+      <animateTransform attributeType="scale" from="1.15" to="1" begin="load+1250ms" dur="1250ms" repeatDur="2500ms" repeatCount="indefinite" easing="ease-in-out"/>
+    </g>
+    <g>
+      <circle fill="#777777" cx="35" cy="0" r="7"></circle>
+      <animateTransform attributeType="translate" from="0" to="5" begin="load" dur="1250ms" repeatDur="2500ms" repeatCount="indefinite" easing="ease-in-out"/>
+      <animateTransform attributeType="translate" from="5" to="0" begin="load+1250ms" dur="1250ms" repeatDur="2500ms" repeatCount="indefinite" easing="ease-in-out"/>
+    </g>
+  </symbol>
 
+  <g class="loading">
+    <g id="animated-icon">
+      <use href="#loading-icon"/>
+      <animateTransform attributeType="rotate" from="0" to="360" begin="load" dur="5" repeatDur="5" repeatCount="indefinite"/>
 
-  <svg id="main">
-    <symbol id="colour-item" href="#tile-list-item" height="100" display="none">
-      <g id="transform">
-        <rect id="bg" height="100%" width="100%" />
-        <text id="name" y="30" x="10"></text>
-        <text id="distance" fill="white" y="70" x="10"></text>
-
-
-        <image fill="white" x="140" y="46" width="28" height="28" href="bolt-on.png" />
-        <text class="bike-counter" id="electric-count" fill="white" y="67" x="180">12</text>
-
-        <image fill="white" x="215" y="46" width="28" height="28" href="bolt-off.png" />
-        <text class="bike-counter" id="normal-count" fill="white" y="67" x="255">15</text>
-
-        <!-- Visual separator between tiles -->
-        <rect id="tile-divider-bottom" class="list-separator" />
-      </g>
-    </symbol>
-
-    <use id="my-tile-list" href="#tile-list">
-      <var id="virtual" value="1" />
-      <var id="separator-height-bottom" value="2"/>
-
-      <use id="colour-pool" href="#tile-list-pool">
-        <use id="colour-pool[1]" href="#colour-item" />
-        <use id="colour-pool[2]" href="#colour-item" />
-        <use id="colour-pool[3]" href="#colour-item" />
-        <use id="colour-pool[4]" href="#colour-item" />
-        <use id="colour-pool[5]" href="#colour-item" />
-        <use id="colour-pool[6]" href="#colour-item" />
-        <use id="colour-pool[7]" href="#colour-item" />
-        <use id="colour-pool[8]" href="#colour-item" />
-        <use id="colour-pool[9]" href="#colour-item" />
-        <use id="colour-pool[10]" href="#colour-item" />
-        <use id="colour-pool[11]" href="#colour-item" />
-        <use id="colour-pool[12]" href="#colour-item" />
-        <use id="colour-pool[13]" href="#colour-item" />
-      </use>
-    </use>
-  </svg>
+    </g>
+    <text id="status">WAITING FOR DATA</text>
+  </g>
 </svg>

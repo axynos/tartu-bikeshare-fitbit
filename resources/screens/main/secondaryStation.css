@@ -1,0 +1,72 @@
+.secondaryStation {
+  height: 100;
+}
+
+.secondaryStation #background {
+  fill: black;
+  height: 100%;
+  width: 100%;
+}
+
+.secondaryStation text {
+  fill: white;
+}
+
+.secondaryStation #name {
+  font-size: 27;
+  fill: #00B2FF;
+  font-family: Seville-Bold-Condensed;
+  x: 10;
+  y: 30;
+}
+
+.secondaryStation #distance {
+  font-size: 35;
+  y: 70;
+  x: 10;
+  font-family: Seville-Bold;
+}
+
+.secondaryStation .icon {
+  fill: white;
+}
+
+.secondaryStation .icon.electric {
+  x: 49%;
+  y: 48;
+  width: 23;
+  height: 23;
+}
+
+.secondaryStation .icon.normal {
+  x: 87%;
+  y: 48;
+  width: 22;
+  height: 22;
+}
+
+.secondaryStation .bike-counter {
+  font-size: 25;
+  font-family: Seville-Bold;
+}
+
+.secondaryStation .bike-counter.electric {
+  x: 59%;
+  y: 67;
+  text-anchor: start;
+}
+
+.secondaryStation .bike-counter.normal {
+  x: 85%;
+  y: 67;
+  text-anchor: end;
+}
+
+.secondaryStation #bike-counter-divider {
+  font-family: Seville-Book;
+  font-size: 35;
+  text-anchor: middle;
+  x: 72%;
+  y: 70;
+  opacity: 0.35;
+}
