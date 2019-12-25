@@ -20,9 +20,9 @@
       "run_background"
     ],
     "buildTargets": [
-      "higgs",
       "meson",
-      "gemini"
+      "gemini",
+      "mira"
     ],
     "i18n": {},
     "defaultLanguage": "en-US"
